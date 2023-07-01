@@ -1,4 +1,4 @@
-# 🚝 VGG16 Review
+# 🚝 VGG16
 
 ### 🛤 paper link : https://arxiv.org/abs/1409.1556
 ### 🛤 model structure
