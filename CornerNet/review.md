@@ -133,7 +133,7 @@ $L = L_{det} + \alpha L_{pull} + \beta L_{push} + \gamma L_{off}$
 ### &nbsp;&nbsp;&nbsp;&nbsp; $L_{det}=-{1 \over N} \displaystyle\sum_{c=1}^{C} \displaystyle\sum_{i=1}^{H} \displaystyle\sum_{j=1}^{W} \begin{cases} {(1-p_{cij})^\alpha \log(p_{cij})},\: \qquad\qquad\:\:\:\:\:if\:y_{cij}=1 \\ (1-y_{cij})^{\beta} (p_{cij})^{\alpha} \log(1-p_{cij}), \quad\: otherwise \end{cases}$
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; $N$ = number of objects in Image
-### &nbsp;&nbsp;&nbsp;&nbsp; $\alpha, \; \beta$ = 각 points의 contribution을 control하는 Hyperparameters ($\alpha = 2, \; \beta=4$)
+### &nbsp;&nbsp;&nbsp;&nbsp; $\alpha, \: \beta$ = 각 points의 contribution을 control하는 Hyperparameters ($\alpha = 2, \: \beta=4$)
 ### &nbsp;&nbsp;&nbsp;&nbsp; Gaussian bump가 $y_{cij}$ 에 encode 되어있기 때문에 $(1-y_{cij})$ 는 GT location 주변에 패널티를 줄인다.
 
 ### ② $L_{push} \And L_{pull}$ &nbsp;:&nbsp; Embedding loss
@@ -141,13 +141,13 @@ $L = L_{det} + \alpha L_{pull} + \beta L_{push} + \gamma L_{off}$
 ### &nbsp;&nbsp;&nbsp;&nbsp; tl-corner와 br-corner가 같은 bounding box에 속하는 경우, embedding 거리가 작도록 함.
 ### &nbsp;&nbsp;&nbsp;&nbsp; 그런 다음 tl-corner와 br-corner의 embedding 간의 거리를 바탕으로 corner를 grouping 한다.
 ### &nbsp;&nbsp;&nbsp;&nbsp; Embedding의 실제 값은 중요하지 않고, 거리만이 corner를 grouping 하는데 사용된다.
-### &nbsp;&nbsp;&nbsp;&nbsp; $L_{pull} = {1 \over N} \displaystyle\sum_{k=1}^{N} [(e_{tk}-e_{k})^2 \; + \; (e_{bk}-e_{k})^2]$
-### &nbsp;&nbsp;&nbsp;&nbsp; $L_{push} = {1 \over N(N+1)} \; \displaystyle\sum_{k=1}^{N} \; \displaystyle\sum_{j=1, \; j \not ={k}}^{N}max(o, \Delta - |e_{k}-e_{j}|)$
+### &nbsp;&nbsp;&nbsp;&nbsp; $L_{pull} = {1 \over N} \displaystyle\sum_{k=1}^{N} [(e_{tk}-e_{k})^2 \: + \: (e_{bk}-e_{k})^2]$
+### &nbsp;&nbsp;&nbsp;&nbsp; $L_{push} = {1 \over N(N+1)} \: \displaystyle\sum_{k=1}^{N} \: \displaystyle\sum_{j=1, \: j \not ={k}}^{N}max(o, \Delta - |e_{k}-e_{j}|)$
 ### &nbsp;&nbsp;&nbsp;&nbsp; 여기서 $e_{k}$는 $e_{tk}$ 와 $e_{bk}$ 의 평균이고, $\Delta$= 1 로 설정.
 ### &nbsp;&nbsp;&nbsp;&nbsp; GT corner location 에서만 loss를 적용
 ### ③ $L_{off}$ &nbsp;:&nbsp; offset loss
 ### &nbsp;&nbsp;&nbsp;&nbsp; Image가 Convolution 될 때, output의 크기는 input보다 작음.
-### &nbsp;&nbsp;&nbsp;&nbsp; 이미지의 위치는 $(x,\, y)$ 에서 heatmap의 위치 $(\lfloor {x \over n}\rfloor), \; (\lfloor {y \over n}\rfloor)$ 으로 mapping된다.
+### &nbsp;&nbsp;&nbsp;&nbsp; 이미지의 위치는 $(x,\, y)$ 에서 heatmap의 위치 $(\lfloor {x \over n}\rfloor), \: (\lfloor {y \over n}\rfloor)$ 으로 mapping된다.
 ### &nbsp;&nbsp;&nbsp;&nbsp; heatmap에서 Input Image로 위치를 다시 mapping 할 때, precision이 손실된 수 있으며, 
 ### &nbsp;&nbsp;&nbsp;&nbsp;이는 small bounding box 의 IoU에 영향을 끼칠 수 있다.
 ### &nbsp;&nbsp;&nbsp;&nbsp; 이에, corner 위치를 Input Resolution으로 remapping 하기 전에,
@@ -155,11 +155,11 @@ $L = L_{det} + \alpha L_{pull} + \beta L_{push} + \gamma L_{off}$
 
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; $O_{k} = ({x \over n} -\lfloor {x \over n}\rfloor, {y \over n} -\lfloor {y \over n}\rfloor)$
-### &nbsp;&nbsp;&nbsp;&nbsp; 여기서 $O_{k}$ 는 offset 이고, $x_{k}, \; y_{k}$ 는 각각 corner $k$ 의 $x$ 좌표, $y$ 좌표이다.
+### &nbsp;&nbsp;&nbsp;&nbsp; 여기서 $O_{k}$ 는 offset 이고, $x_{k}, \: y_{k}$ 는 각각 corner $k$ 의 $x$ 좌표, $y$ 좌표이다.
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; 특히, 모든 categories 의 tl-corner가 공유하는 하나의 offset set과 br-corner가 공유하는 또 다른 set을 예측.
 ### &nbsp;&nbsp;&nbsp;&nbsp; Training을 위해 GT corner와 offset set의 smoothL1Loss를 구한다.
-### &nbsp;&nbsp;&nbsp;&nbsp; $L_{off} = {1 \over N} \displaystyle\sum_{k=1}^{N} smoothL1Loss(O_{k},\; \hat{O}_{k})$
+### &nbsp;&nbsp;&nbsp;&nbsp; $L_{off} = {1 \over N} \displaystyle\sum_{k=1}^{N} smoothL1Loss(O_{k},\: \hat{O}_{k})$
 ### &nbsp;&nbsp;&nbsp;&nbsp; $O_{k}$ 는 pred, &nbsp; $\hat{O}_{k}$ 는 GT
 
 
