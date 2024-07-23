@@ -2,9 +2,10 @@
 <br>
 <br>
 
-$
-f(n)=\begin{cases} n/2, &  if \quad n \quad is \quad even \\ 3n+1, & if \quad n \quad is \quad odd \end{cases}
-$
+$L_{det} = -{1 \over N} \displaystyle\sum_{c=1}^{C} \sum_{i=1}^{H} \sum_{j=1}^{W} \left\{\begin{matrix}
+ (1-p_{cij})^{\alpha} \log{p_{cij}} & if \: y_{cij}=1\\ 
+ (1-y_{cij})^{\beta} (p_{cij})^{\alpha} \log{p_{cij}} & otherwise 
+\end{matrix}\right.$
 
 
 ## 🔍 Research Background
