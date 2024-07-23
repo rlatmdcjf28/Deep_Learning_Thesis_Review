@@ -2,9 +2,9 @@
 <br>
 <br>
 
-$
+$$
 f(n)=\begin{cases} n/2, &  if \quad n \quad is \quad even \\ 3n+1, & if \quad n \quad is \quad odd \end{cases}
-$
+$$
 
 
 ## 🔍 Research Background
