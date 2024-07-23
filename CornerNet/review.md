@@ -2,6 +2,13 @@
 <br>
 <br>
 
+\[ f(n) =
+  \begin{cases}
+    n/2       & \quad \text{if } n \text{ is even}\\
+    -(n+1)/2  & \quad \text{if } n \text{ is odd}
+  \end{cases}
+\]
+
 ## 🔍 Research Background
 ### Object Detection는 두 방식으로 나뉨 : one stage detector와 two stage detector
 ### 기존의 one stage detector는 Anchor box들을 이미지에 densly하게  생성하고,
