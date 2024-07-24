@@ -133,7 +133,10 @@ $L = L_{det} + \alpha L_{pull} + \beta L_{push} + \gamma L_{off}$
 
 ### ① $L_{det}$ &nbsp;:&nbsp; variant focal loss
 
-### $\boldsymbol{L_{det} \ = \ -{1 \over N} \ \displaystyle \sum_{c=1}^{C} \ \sum_{i=1}^{H} \ \sum_{j=1}^{W} \ {\begin{cases} {(1-p_{cij})^{\alpha} \ {\log {p_{cij}}}}, & if \ \ y_{cij} = 1  \newline {(1-y_{cij})^{\beta} \  {(p_{cij})}^{\alpha} \ {\log {p_{cij}}}}, & otherwise \end{cases}}  }$
+![L_det 수식 그림](https://github.com/user-attachments/assets/00850702-d875-43f8-a55f-683d303e15d8)
+
+~~[자꾸 latex 오류가 나서;; 그냥 그림으로 붙였습니다]~~
+
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; $N$ = number of objects in Image
 ### &nbsp;&nbsp;&nbsp;&nbsp; $\alpha, \: \beta$ = 각 points의 contribution을 control하는 Hyperparameters ($\alpha = 2, \: \beta=4$)
