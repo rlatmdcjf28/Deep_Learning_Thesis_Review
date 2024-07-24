@@ -77,7 +77,7 @@ at::Tensor max_temp;
 ### ④⑤⑥⑦⑧⑨⑩
 
 ### 이해하기 어려울 수도 있으니 예시를 살펴보자.
-### ① input = $\begin{bmatrix}7&1&3\\\2&4&5\\\3&9&4 \end{bmatrix}$, &nbsp; shape = (1, 1, 3, 3)
+### ① input = `$\begin{bmatrix}7&1&3\\2&4&5\\3&9&4 \end{bmatrix}$`, &nbsp; shape = (1, 1, 3, 3)
 
 ### ② output = torch.zeros_like(input) = $\begin{bmatrix}0&0&0\\\0&0&0\\\0&0&0 \end{bmatrix}$
 ### ③ height &nbsp; = &nbsp; input.size(2) &nbsp; = 3
