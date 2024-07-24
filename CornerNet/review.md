@@ -77,9 +77,9 @@ at::Tensor max_temp;
 ### ④⑤⑥⑦⑧⑨⑩
 
 ### 이해하기 어려울 수도 있으니 예시를 살펴보자.
-### ① input = $\begin{bmatrix}7&1&3\\2&4&5\\3&9&4 \end{bmatrix}$, &nbsp; shape = (1, 1, 3, 3)
+### ① input = $\begin{bmatrix}7&1&3\\\2&4&5\\\3&9&4 \end{bmatrix}$, &nbsp; shape = (1, 1, 3, 3)
 
-### ② output = torch.zeros_like(input) = $\begin{bmatrix}0&0&0\\0&0&0\\0&0&0 \end{bmatrix}$
+### ② output = torch.zeros_like(input) = $\begin{bmatrix}0&0&0\\\0&0&0\\\0&0&0 \end{bmatrix}$
 ### ③ height &nbsp; = &nbsp; input.size(2) &nbsp; = 3
 ### ④ input_temp &nbsp; = &nbsp; input.select(2, 0) &nbsp; = &nbsp; $\boldsymbol{[7, 1, 3]}$
 ### ⑤ output_temp &nbsp; = &nbsp; output.select(2, 0) &nbsp; = &nbsp; $\boldsymbol{[0, 0, 0]}$
@@ -90,7 +90,7 @@ at::Tensor max_temp;
 ### &nbsp;&nbsp;&nbsp;&nbsp; max_temp = output.select(2, 0+1) &nbsp; -> &nbsp; $\boldsymbol{[0, 0, 0]}$
 ### &nbsp;&nbsp;&nbsp;&nbsp; at::max_out(max_temp, input_temp, output_temp) &nbsp; -> &nbsp; max_temp가 $\boldsymbol{[7, 4, 5]}$ 로 바뀜. &nbsp; max_temp가 변경되면 output 텐서도 변경됨.
 ### &nbsp;&nbsp;&nbsp;&nbsp; 위 작업을 ind = height - 1까지 반복
-### ⑧ output = $\begin{bmatrix}7&1&3\\7&4&5\\7&9&5 \end{bmatrix}$ 을 return.
+### ⑧ output = $\begin{bmatrix}7&1&3\\\7&4&5\\\7&9&5 \end{bmatrix}$ 을 return.
 ### ⑨⑩
 
 
