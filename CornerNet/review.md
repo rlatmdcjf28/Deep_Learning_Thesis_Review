@@ -36,7 +36,8 @@
 <br>
 
 ### 또 다른 Idea는 __Corner Pooling__ 이다.
-### Corner Pooling 이란, Convolution Network가 Bounding boxes의 corner를 더 잘 localize 할 수 있도록 돕는 Custom Pooling Layer 이다. (공식 깃허브를 보면 torch.utils.cpp_extension으로 구현되어있음.)
+### Corner Pooling 이란, Convolution Network가 Bounding boxes의 corner를 더 잘 localize 할 수 있도록 돕는 
+### Custom Pooling Layer 이다. (공식 깃허브를 보면 torch.utils.cpp_extension으로 구현되어있음.)
 ### Bounding box의 corner는 종종 object의 외부에 있기에 local info만으로는 corner를 정확히 찾기 어려울 수 있다.
 ### pixel 위치에 top-left corner가 존재하는지 여부를 결정하기 위해서는
 ### object의 topmost boundary를 찾기 위해 해당 pixel 위치에서 수직으로 아래쪽을,
@@ -76,8 +77,8 @@ at::Tensor max_temp;
 ### ④⑤⑥⑦⑧⑨⑩
 
 ### 이해하기 어려울 수도 있으니 예시를 살펴보자.
-### ① input = $\begin{bmatrix} 7 & 1 & 3 \newline 2 & 4 & 5 \newline 3 & 9 & 4\end{bmatrix}$, &nbsp; shape = (1, 1, 3, 3)
-### ② output = torch.zeros_like(input) = $\begin{bmatrix} 0 & 0 & 0 \newline 0 & 0 & 0 \newline 0 & 0 & 0 \end{bmatrix}$
+### ① input = $\begin{bmatrix} 7 & 1 & 3 \\ 2 & 4 & 5 \\ 3 & 9 & 4 \end{bmatrix}$, &nbsp; shape = (1, 1, 3, 3)
+### ② output = torch.zeros_like(input) = $\begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}$
 ### ③ height &nbsp; = &nbsp; input.size(2) &nbsp; = 3
 ### ④ input_temp &nbsp; = &nbsp; input.select(2, 0) &nbsp; = &nbsp; $\boldsymbol{[7, 1, 3]}$
 ### ⑤ output_temp &nbsp; = &nbsp; output.select(2, 0) &nbsp; = &nbsp; $\boldsymbol{[0, 0, 0]}$
@@ -88,7 +89,7 @@ at::Tensor max_temp;
 ### &nbsp;&nbsp;&nbsp;&nbsp; max_temp = output.select(2, 0+1) &nbsp; -> &nbsp; $\boldsymbol{[0, 0, 0]}$
 ### &nbsp;&nbsp;&nbsp;&nbsp; at::max_out(max_temp, input_temp, output_temp) &nbsp; -> &nbsp; max_temp가 $\boldsymbol{[7, 4, 5]}$ 로 바뀜. &nbsp; max_temp가 변경되면 output 텐서도 변경됨.
 ### &nbsp;&nbsp;&nbsp;&nbsp; 위 작업을 ind = height - 1까지 반복
-### ⑧ output = $\begin{bmatrix} 7 & 1 & 3 \newline 7 & 4 & 5 \newline 7 & 9 & 5 \end{bmatrix}$ 을 return.
+### ⑧ output = $\begin{bmatrix} 7 & 1 & 3 \\ 7 & 4 & 5 \\ 7 & 9 & 5 \end{bmatrix}$ 을 return.
 ### ⑨⑩
 
 
