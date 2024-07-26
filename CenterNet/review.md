@@ -76,24 +76,24 @@ central region in the bounding box의 size는 detection results에 영향을 미
 이를 해결하기 위해, Bounding box의 size에 따라 adaptively으로 center region을 fit하는 __scale-aware central region__ 을 제안한다.<br>
 <br>
 Bounding box $i$가 preserve되어야할지 결정해야한다고 가정해보자.<br>
-$tl_{x}$ 와 $tl_{y}$ 는 Top-Left corner의 coordinate를 나타내고, $br_{x}$ 와 $br_{y}$ 는 Bottom-Right corner의 coordinate를 나타낸다.<br>
-centeral region $j$를 정의하자.<br>
-$ctl_x$ 와 $ctl_y$ 는 $j$ 의 tl coordinate를 나타내고, $cbr_x$ 와 $cbr_y$ 는 $j$ 의 br coordinate를 나타낸다.<br>
-그러면 $tl_x, tl_y, br_x, br_y, ctl_x, ctl_y, cbr_x, cbr_y$ 는 다음 관계를 만족해야 한다.
+$\Large tl_{x}$ 와 $\Large tl_{y}$ 는 Top-Left corner의 coordinate를 나타내고, $\Large br_{x}$ 와 $\Large br_{y}$ 는 Bottom-Right corner의 coordinate를 나타낸다.<br>
+centeral region $\Large j$를 정의하자.<br>
+$\Large ctl_x$ 와 $\Large ctl_y$ 는 $\Large j$ 의 tl coordinate를 나타내고, $\Large cbr_x$ 와 $\Large cbr_y$ 는 $\Large j$ 의 br coordinate를 나타낸다.<br>
+그러면 $\Large tl_x, tl_y, br_x, br_y, ctl_x, ctl_y, cbr_x, cbr_y$ 는 다음 관계를 만족해야 한다.
 
 
-$$
+$
 \Large {\begin{cases}
      ctl_x = {{(n + 1) tl_x + (n - 1) br_x} \over {2n}}\\
      ctl_y = {{(n + 1) tl_y + (n - 1) br_y} \over {2n}}\\
      cbr_x = {{(n - 1) tl_x + (n + 1) br_x} \over {2n}}\\
      cbr_y = {{(n - 1) tl_y + (n + 1) br_y} \over {2n}}
   \end{cases}}
-$$
+$
 
-여기서 $n$ 은 central region $j$ 의 scale을 결정하는 odd number이다.<br>
-이 논문에서는 bounding box의 scale이 150보다 작으면 $n = 3$ 으로,<br>
-150보다 크면 $n = 5$ 로 설정한다. 아래 그림은 $n$에 따라 두 central region의 차이를 보여준다.<br>
+여기서 $\Large n$ 은 central region $\Large j$ 의 scale을 결정하는 odd number이다.<br>
+이 논문에서는 bounding box의 scale이 150보다 작으면 $\Large n = 3$ 으로,<br>
+150보다 크면 $\Large n = 5$ 로 설정한다. 아래 그림은 $\Large n$에 따라 두 central region의 차이를 보여준다.<br>
 위 식에 따라, __scale-aware central region__ 을 결정한 후, central region이 keypoints를 contain 하는지를 확인한다.
 
 ![Screenshot from 2024-07-26 16-59-21](https://github.com/user-attachments/assets/6d943769-38a9-46d0-90bd-043656bdbb38)
