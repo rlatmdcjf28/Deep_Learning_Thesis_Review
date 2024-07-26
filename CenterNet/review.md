@@ -82,14 +82,14 @@ $\Large ctl_x$ 와 $\Large ctl_y$ 는 $\Large j$ 의 tl coordinate를 나타내�
 그러면 $\Large tl_x, tl_y, br_x, br_y, ctl_x, ctl_y, cbr_x, cbr_y$ 는 다음 관계를 만족해야 한다.
 
 
-$
+$$
 \Large {\begin{cases}
      ctl_x = {{(n + 1) tl_x + (n - 1) br_x} \over {2n}}\\
      ctl_y = {{(n + 1) tl_y + (n - 1) br_y} \over {2n}}\\
      cbr_x = {{(n - 1) tl_x + (n + 1) br_x} \over {2n}}\\
      cbr_y = {{(n - 1) tl_y + (n + 1) br_y} \over {2n}}
   \end{cases}}
-$
+$$
 
 여기서 $\Large n$ 은 central region $\Large j$ 의 scale을 결정하는 odd number이다.<br>
 이 논문에서는 bounding box의 scale이 150보다 작으면 $\Large n = 3$ 으로,<br>
