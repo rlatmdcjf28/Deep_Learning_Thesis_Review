@@ -69,21 +69,21 @@ CornerNet을 기반으로, center keypoints를 위한 heatmap을 embedding 하�
    
 central region in the bounding box의 size는 detection results에 영향을 미친다.<br>
 예를 들어, smaller central regions는 small bounding boxes에 대한 recall rate를 낮추고, <br>larger central regions는 large bounding boxes에 대한 precision을 낮춘다.
-- __recall__ ? &nbsp; GT object를 얼마나 잘 detect하는지에 대한 지표
-- __precision__ ? &nbsp; detect한 objects 중 GT object가 얼마나 많은지에 대한 지표
--  why ? &nbsp; __smaller central regions__ 일 경우, GT objects의 center를 정확하게 맞추기 어렵다. <br>특히 object의 size가 작을수록 center가 작아지기 때문에 smaller central region은 이 object의 center point를 놓치기 쉬움.<br>결과적으로, small object의 center point를 놓치게 되어 Recall이 낮아지게 된다.<br> __larger central regions__ 일 경우, bounding box가 더 큰 area를 포함하게 되고, object의 center point와 상관없는 부분이 포함될 가능성이 있음.<br>결과적으로, large object의 경우 center point와 관련없는 다른 region이 detect될 수 있어 Precision이 낮아지게 된다.
+- __recall__? &nbsp; GT object를 얼마나 잘 detect하는지에 대한 지표
+- __precision__? &nbsp; detect한 objects 중 GT object가 얼마나 많은지에 대한 지표
+-  why? &nbsp; __smaller central regions__ 일 경우, GT objects의 center를 정확하게 맞추기 어렵다. <br>특히 object의 size가 작을수록 center가 작아지기 때문에 smaller central region은 이 object의 center point를 놓치기 쉬움.<br>결과적으로, small object의 center point를 놓치게 되어 Recall이 낮아지게 된다.<br> __larger central regions__ 일 경우, bounding box가 더 큰 area를 포함하게 되고, object의 center point와 상관없는 부분이 포함될 가능성이 있음.<br>결과적으로, large object의 경우 center point와 관련없는 다른 region이 detect될 수 있어 Precision이 낮아지게 된다.
 
 이를 해결하기 위해, Bounding box의 size에 따라 adaptively으로 center region을 fit하는 __scale-aware central region__ 을 제안한다.<br>
 <br>
 Bounding box $i$가 preserve되어야할지 결정해야한다고 가정해보자.<br>
-$\Large tl_{x}$ 와 $\Large tl_{y}$ 는 Top-Left corner의 coordinate를 나타내고, $\Large br_{x}$ 와 $\Large br_{y}$ 는 Bottom-Right corner의 coordinate를 나타낸다.<br>
-centeral region $\Large j$를 정의하자.<br>
-$\Large ctl_x$ 와 $\Large ctl_y$ 는 $\Large j$ 의 tl coordinate를 나타내고, $\Large cbr_x$ 와 $\Large cbr_y$ 는 $\Large j$ 의 br coordinate를 나타낸다.<br>
-그러면 $\Large tl_x, tl_y, br_x, br_y, ctl_x, ctl_y, cbr_x, cbr_y$ 는 다음 관계를 만족해야 한다.
+$\large tl_{x}$ 와 $\large tl_{y}$ 는 Top-Left corner의 coordinate를 나타내고, $\large br_{x}$ 와 $\large br_{y}$ 는 Bottom-Right corner의 coordinate를 나타낸다.<br>
+centeral region $\large j$를 정의하자.<br>
+$\large ctl_x$ 와 $\large ctl_y$ 는 $\large j$ 의 tl coordinate를 나타내고, $\large cbr_x$ 와 $\large cbr_y$ 는 $\large j$ 의 br coordinate를 나타낸다.<br>
+그러면 $\large tl_x, tl_y, br_x, br_y, ctl_x, ctl_y, cbr_x, cbr_y$ 는 다음 관계를 만족해야 한다.
 
 
 $$
-\Large {\begin{cases}
+\large {\begin{cases}
      ctl_x = {{(n + 1) tl_x + (n - 1) br_x} \over {2n}}\\
      ctl_y = {{(n + 1) tl_y + (n - 1) br_y} \over {2n}}\\
      cbr_x = {{(n - 1) tl_x + (n + 1) br_x} \over {2n}}\\
@@ -91,9 +91,9 @@ $$
   \end{cases}}
 $$
 
-여기서 $\Large n$ 은 central region $\Large j$ 의 scale을 결정하는 odd number이다.<br>
-이 논문에서는 bounding box의 scale이 150보다 작으면 $\Large n = 3$ 으로,<br>
-150보다 크면 $\Large n = 5$ 로 설정한다. 아래 그림은 $\Large n$에 따라 두 central region의 차이를 보여준다.<br>
+여기서 $\large n$ 은 central region $\large j$ 의 scale을 결정하는 odd number이다.<br>
+이 논문에서는 bounding box의 scale이 150보다 작으면 $\large n = 3$ 으로,<br>
+150보다 크면 $\large n = 5$ 로 설정한다. 아래 그림은 $\large n$에 따라 두 central region의 차이를 보여준다.<br>
 위 식에 따라, __scale-aware central region__ 을 결정한 후, central region이 keypoints를 contain 하는지를 확인한다.
 
 ![Screenshot from 2024-07-26 16-59-21](https://github.com/user-attachments/assets/6d943769-38a9-46d0-90bd-043656bdbb38)
