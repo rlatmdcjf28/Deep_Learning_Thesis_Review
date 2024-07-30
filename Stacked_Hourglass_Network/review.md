@@ -187,7 +187,7 @@ $\Large \Rightarrow$ nn.Sequential(<br>
 
 ## ✭ &nbsp; Model Shape Summary
 ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inp = <span style="color:yellow">( b, h, w, c )</span>
-### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $\Large \Rightarrow$ &nbsp; perm = x.permute( inp ) = <span style="color:yellow">( b, c, h, w )</span>
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $\Large \Rightarrow$ &nbsp; perm = x.permute( inp ) = <span style="background-color:#fff5b1">( b, c, h, w )</span>
 ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $\Large \Rightarrow$ &nbsp; pre = x.pre( perm ) = <span style="color:yellow">( b, inp_dim, h'', w'' ) , &nbsp; (h'', w'' = ($\Large\lfloor{{{h-1}\over{2}} + 1}\rfloor \over 2$, $\Large\lfloor{{{w - 1}\over{2}} + 1}\rfloor \over 2$))</span>
 ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $\Large \Rightarrow$ &nbsp; for &nbsp;i &nbsp;in &nbsp;range( nstack ) :  
 ### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $\large \rightarrow$ &nbsp; hg &nbsp;=&nbsp; hg[ i ] ( pre ) : ModuleList &nbsp;=&nbsp; <span style="color:yellow">( b, inp_dim, h'', w'' )</span>
