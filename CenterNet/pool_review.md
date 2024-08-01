@@ -1,5 +1,5 @@
-$$\begin{bmatrix}
-       \frac{5}{6} & \frac{1}{6} & 0           \\
-       \frac{5}{6} & 0           & \frac{1}{6} \\
-       0           & \frac{5}{6} & \frac{1}{6}
-     \end{bmatrix}$$
+$\begin{bmatrix}\begin{bmatrix}\begin{bmatrix}
+       \ 1 & 2 & 3 \\
+       \ 3 & 2 & 1 \\
+       \ 2 & 2 & 2
+     \ \end{bmatrix}\end{bmatrix}\end{bmatrix}$
