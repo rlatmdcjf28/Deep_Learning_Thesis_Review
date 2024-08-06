@@ -15,8 +15,8 @@ output = torch.zeros_like(input)
 $$\Large{\Rightarrow \text output = \begin{bmatrix}\begin{bmatrix}\begin{bmatrix}
        \ 0 & 0 & 0\\
        \ 0 & 0 & 0\\
-       \ 0 & 0 & 0
-     \ \end{bmatrix}\end{bmatrix}\end{bmatrix}}$$
+       \ 0 & 0 & 0\
+      \end{bmatrix}\end{bmatrix}\end{bmatrix}}$$
 
 
 
@@ -25,10 +25,10 @@ $$\Large{\Rightarrow \text output = \begin{bmatrix}\begin{bmatrix}\begin{bmatrix
 ① Input의 마지막 row를 output의 마지막 row에 복사
 
 $$\Large{\Rightarrow \text output = \begin{bmatrix}\begin{bmatrix}\begin{bmatrix}
-       \ 0 & 0 & 0 \\
-       \ 0 & 0 & 0 \\
-       \ 2 & 2 & 2
-     \ \end{bmatrix}\end{bmatrix}\end{bmatrix}}$$
+       \ 0 & 0 & 0\\
+       \ 0 & 0 & 0\\
+       \ 2 & 2 & 2\
+      \end{bmatrix}\end{bmatrix}\end{bmatrix}}$$
 
 
 ② ind = 1 ( 아래에서 두 번째 row )<br>
