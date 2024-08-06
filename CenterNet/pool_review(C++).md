@@ -11,6 +11,7 @@ $$\Large{\Rightarrow \text input =\begin{bmatrix}\begin{bmatrix}\begin{bmatrix}
      \ \end{bmatrix}\end{bmatrix}\end{bmatrix}}$$
 
 output = torch.zeros_like(input)
+
 $$\Large{\Rightarrow \text output = \begin{bmatrix}\begin{bmatrix}\begin{bmatrix}
        \ 0 & 0 & 0 \\
        \ 0 & 0 & 0 \\
